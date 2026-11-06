@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /go/
+
+Sitemap: https://apexlegendcheats.com/sitemap.xml
+Sitemap: https://apexlegendcheats.com/sitemap-images.xml
+
+# RSS: https://apexlegendcheats.com/rss.xml

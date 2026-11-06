@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { resolvePageSeo } from '../config/seo';
+import { breadcrumbSchema, webPageSchema } from '../utils/schema';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { Button } from '@/components/starwind/button';
+import Icon from '../components/icons/Icon.astro';
+import { ROUTES, normalizeInternalPath } from '../utils/path';
+
+const seo = resolvePageSeo('/pricing/');
+const breadcrumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Pricing', path: '/pricing/' },
+];
+
+const moneyArticle = normalizeInternalPath('/blog/apex-legends-cheats-pricing-compare-plans-subscription-options/');
+const subscriptionArticle = normalizeInternalPath('/blog/apex-legends-cheat-subscription-plans-daily-weekly-monthly-options/');
+const purchaseArticle = normalizeInternalPath('/blog/apex-legends-cheat-purchase-guide-payment-delivery-access/');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: 'Apex Legends cheat pricing & subscriptions',
+      description: seo.description,
+      url: '/pricing/',
+    }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <section class="border-b border-border bg-muted/10 py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+      <SectionHeader
+        eyebrow="Apex Legends cheat pricing"
+        title="Plans, checkout and subscriptions"
+        desc="This page explains how pricing works on apexlegendcheats.com. Dollar amounts and plan lengths appear on the external checkout—we do not mirror them here."
+        titleId="pricing-page-title"
+      />
+
+      <div class="prose prose-neutral dark:prose-invert mt-8 max-w-3xl">
+        <h2 id="what-we-publish">What we publish on-site</h2>
+        <p>
+          Tier pages list <strong>modules</strong> (what you are buying). The secure storefront lists <strong>price</strong> and
+          <strong>subscription window</strong> when you continue checkout from <a href={ROUTES.products}>Products</a>.
+        </p>
+        <h2 id="related-guides">Related guides</h2>
+        <ul>
+          <li>
+            <a href={moneyArticle}>Apex Legends Cheats Pricing: Compare Plans and Subscription Options</a> — how to read checkout without guessing.
+          </li>
+          <li>
+            <a href={subscriptionArticle}>Apex Legends Cheat Subscription Plans: Daily, Weekly and Monthly Options</a> — questions to ask before you pay.
+          </li>
+          <li>
+            <a href={purchaseArticle}>Apex Legends Cheat Purchase Guide: Payment, Delivery and Access</a> — payment, portal access and support flow.
+          </li>
+        </ul>
+        <h2 id="refunds">Refunds</h2>
+        <p>
+          Refund rules match our <a href="/terms/">Terms &amp; Conditions</a>—sales are final in most cases; limited exceptions apply when support confirms a fault
+          on a supported Windows setup.
+        </p>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <Button as="a" href={ROUTES.products} variant="primary">
+          View products
+          <Icon name="arrowRight" size={17} />
+        </Button>
+        <Button as="a" href={ROUTES.faq} variant="outline">
+          Read FAQ
+        </Button>
+        <Button as="a" href="/forum/apex-subscription-expiry/" variant="outline">
+          Subscription thread
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
