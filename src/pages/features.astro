@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { resolvePageSeo } from '../config/seo';
+import { breadcrumbSchema, webPageSchema } from '../utils/schema';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { Button } from '@/components/starwind/button';
+import Icon from '../components/icons/Icon.astro';
+import { ROUTES, normalizeInternalPath } from '../utils/path';
+import { compareRows } from '../data/faq';
+
+const seo = resolvePageSeo('/features/');
+const breadcrumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Features', path: '/features/' },
+];
+
+const compareArticle = normalizeInternalPath('/blog/apex-legends-cheat-comparison-features-pricing-requirements/');
+const espArticle = normalizeInternalPath('/blog/apex-legends-esp-available-features-product-comparison/');
+const aimArticle = normalizeInternalPath('/blog/apex-legends-aimbot-features-options-pricing/');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: 'Apex Legends cheat features',
+      description: seo.description,
+      url: '/features/',
+    }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <section class="border-b border-border bg-muted/10 py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+      <SectionHeader
+        eyebrow="Apex Legends cheat features"
+        title="ESP, scripts and tier differences"
+        desc="Use this hub to map search terms (aimbot, wallhack, radar) to the module names on Lite, Pro and Elite—then open each product page for the full list."
+        titleId="features-page-title"
+      />
+
+      <div class="prose prose-neutral dark:prose-invert mt-8 max-w-3xl">
+        <h2 id="how-we-name-things">How we name things</h2>
+        <p>
+          <strong>Apex Legends cheat features</strong> on apexlegendcheats.com are the rows in the tables below and on each tier page. “Wallhack” and “radar” usually map to ESP and
+          minimap overlays; “aimbot” maps to script modules (Auto Combo, movement assist, Smart Cast) where they appear on <a href={`${ROUTES.products}pro/`}>Pro</a> and
+          <a href={`${ROUTES.products}elite/`}>Elite</a>.
+        </p>
+        <h2 id="feature-matrix">Feature matrix (Lite / Pro / Elite)</h2>
+        <p>Checked cells follow the site’s product comparison data—if a row later changes on tier pages, those pages win.</p>
+      </div>
+
+      <div class="mt-6 overflow-x-auto rounded-xl border border-border bg-card/50">
+        <table class="w-full min-w-[36rem] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-border bg-muted/30">
+              <th class="px-4 py-3 font-semibold">Feature</th>
+              <th class="px-3 py-3 text-center font-semibold">Lite</th>
+              <th class="px-3 py-3 text-center font-semibold">Pro</th>
+              <th class="px-3 py-3 text-center font-semibold">Elite</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              compareRows.map((row) => (
+                <tr class="border-b border-border/80">
+                  <td class="px-4 py-2.5">{row.feature}</td>
+                  <td class="px-3 py-2.5 text-center">{row.lite ? '✓' : '—'}</td>
+                  <td class="px-3 py-2.5 text-center">{row.pro ? '✓' : '—'}</td>
+                  <td class="px-3 py-2.5 text-center">{row.elite ? '✓' : '—'}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="prose prose-neutral dark:prose-invert mt-8 max-w-3xl">
+        <h2 id="deep-dives">Deep dives</h2>
+        <ul>
+          <li><a href={espArticle}>Apex Legends ESP: Available Features and Product Comparison</a></li>
+          <li><a href={aimArticle}>Apex Legends Aimbot: Features, Options and Pricing</a></li>
+          <li><a href={compareArticle}>Apex Legends Cheat Comparison: Features, Pricing and Requirements</a></li>
+        </ul>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <Button as="a" href={ROUTES.products} variant="primary">
+          Open products
+          <Icon name="arrowRight" size={17} />
+        </Button>
+        <Button as="a" href={ROUTES.pricing} variant="outline">
+          Pricing overview
+        </Button>
+        <Button as="a" href={ROUTES.faq} variant="outline">
+          FAQ
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
