@@ -1,14 +1,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { resolveDistImagesDir, resolveDistOutputRoot } from './resolve-dist-output.mjs';
-import { getPublicSiteOrigin } from './site-origin.mjs';
+import { getSitemapSiteOrigin } from './site-origin.mjs';
+
+const MAX_IMAGE_SITEMAP_URLS = 50000;
 
 const root = process.cwd();
 const outputRoot = resolveDistOutputRoot(root);
 const relRoot = path.relative(root, outputRoot).split(path.sep).join('/') || 'dist';
 const distImages = resolveDistImagesDir(root);
 const outPath = path.join(outputRoot, 'sitemap-images.xml');
-const base = getPublicSiteOrigin();
+const base = getSitemapSiteOrigin();
 
 function walkImages(dir, acc = []) {
   if (!fs.existsSync(dir)) return acc;
@@ -37,6 +39,13 @@ if (!imagesRootExists) {
 if (files.length === 0) {
   console.error(
     `write-image-sitemap: no WebP files under ${path.relative(root, distImages)} — check astro build output path.`,
+  );
+  process.exit(1);
+}
+
+if (files.length > MAX_IMAGE_SITEMAP_URLS) {
+  console.error(
+    `write-image-sitemap: ${files.length} URLs exceeds sitemap limit (${MAX_IMAGE_SITEMAP_URLS}).`,
   );
   process.exit(1);
 }

@@ -2,5 +2,5 @@
 export const HOME_SITE_META = {
   title: 'Apex Legends Cheats, ESP & Scripts | ApexLegendCheats',
   description:
-    'Explore Apex Legends cheats for PC, including Legend ESP, minimap overlays, scripts and Auto Combo tools. Compare available tiers, features and compatibility with Steam and the EA app on Windows 10/11.',
+    'PC Apex Legends cheats with ESP, scripts and tiered tools. Compare Lite, Pro and Elite modules plus Steam, EA app and Windows 10/11 compatibility.',
 } as const;

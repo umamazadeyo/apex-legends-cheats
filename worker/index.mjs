@@ -3,6 +3,8 @@
  * Production SEO URLs remain https://apexlegendcheats.com via HTML canonicals and sitemaps.
  */
 
+import { resolveCheckoutPathRedirect } from '../src/config/checkout-redirects.mjs';
+
 const INDEXABLE_MEDIA = new Set([
   'text/html',
   'application/xhtml+xml',
@@ -31,16 +33,34 @@ function pathLooksIndexable(pathname) {
   return !pathname.includes('.');
 }
 
+function xmlContentType(pathname) {
+  if (pathname.endsWith('.xml')) return 'application/xml; charset=utf-8';
+  return null;
+}
+
 export default {
   async fetch(request, env) {
-    const response = await env.SITE_ASSETS.fetch(request);
     const url = new URL(request.url);
-
-    if (!isWorkersDev(url.hostname)) {
-      return response;
+    const checkoutTarget = resolveCheckoutPathRedirect(url.pathname);
+    if (checkoutTarget) {
+      return Response.redirect(checkoutTarget, 302);
     }
 
+    const response = await env.SITE_ASSETS.fetch(request);
+
     const headers = new Headers(response.headers);
+    const forcedXml = xmlContentType(url.pathname);
+    if (forcedXml && response.ok) {
+      headers.set('Content-Type', forcedXml);
+    }
+
+    if (!isWorkersDev(url.hostname)) {
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      });
+    }
     const contentType = headers.get('content-type');
     if (
       url.pathname !== '/robots.txt' &&

@@ -651,9 +651,9 @@ export const en: Translations = {
   },
   legalPages: {
     about: {
-      title: 'About ApexLegendCheats',
+      title: 'About our Apex Legends PC resource',
       description:
-        'ApexLegendCheats publishes Apex Legends cheat tiers, utility tools and PC support resources at apexlegendcheats.com.',
+        'Tier comparisons, utilities, patch notes and support channels for Apex Legends on Windows—published on apexlegendcheats.com.',
       sections: [
         {
           heading: 'Who we are',

@@ -25,7 +25,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/features/': {
     title: 'Apex Legends Cheat Features | ESP, Aim Scripts & Tiers',
     description:
-      'Map Apex Legends cheat features (ESP, wallhack-style overlays, aim scripts, radar) to Lite, Pro and Elite using the same comparison table as the product hub.',
+      'See how ESP, aim scripts and overlays map to Lite, Pro and Elite—same module names as the tier pages, without extra marketing claims.',
   },
   '/products/apex-legends-cheats/utilities/': {
     title: 'Apex Legends Utilities | HWID, UGC & Skin Changer',
@@ -33,19 +33,19 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Compare HWID Spoofer, UGC and Skin Changer—when each utility fits with links to full Apex Legends product pages.',
   },
   '/blog/': {
-    title: 'Apex Legends Cheat Guides | Comparisons & Patch Updates',
+    title: 'Apex Legends Setup Guides & Patch Notes',
     description:
-      'Fifteen guides: compare Apex Legends cheats and pricing, aimbot and ESP articles, Season 31 notes, purchase and subscription help—linked to live product pages.',
+      'Setup guides, tier comparisons, patch-day checks and purchase tips for Apex Legends on PC—complementing the homepage overview.',
   },
   '/forum/': {
-    title: 'Apex Legends Forum | Product & Support Q&A',
+    title: 'Apex Legends Q&A Archive | Install & Patches',
     description:
-      'Read staff-written Q&A on Apex Legends products, installation, Season updates, and feedback—posting is disabled on-site.',
+      'Staff-written answers on tiers, installs, Season 31 updates and troubleshooting. Read-only archive—use Support for private order help.',
   },
   '/faq/': {
-    title: 'FAQ | Apex Legends Cheats, Products & Setup',
+    title: 'Apex Legends Cheats FAQ | Tiers & Setup',
     description:
-      'Answers on cheat tiers, ESP, aim assist scripts, HWID tools, checkout, and guides at apexlegendcheats.com.',
+      'Frequently asked questions on Lite, Pro and Elite modules, HWID utilities, checkout, bans, refunds and Windows setup for Apex Legends.',
   },
   '/terms/': {
     title: 'Terms & Conditions | ApexLegendCheats',
@@ -58,9 +58,9 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'How apexlegendcheats.com uses analytics, cookies, and contact data when you browse or request support.',
   },
   '/about/': {
-    title: 'About ApexLegendCheats',
+    title: 'About Our Apex Legends PC Guides & Tools',
     description:
-      'What ApexLegendCheats publishes: Apex Legends cheat tiers, utilities, guides, and status notes.',
+      'Who publishes tier comparisons, utilities and patch notes for Apex Legends on PC, and how support and status updates work on this site.',
   },
   '/support/': {
     title: 'Support | ApexLegendCheats',

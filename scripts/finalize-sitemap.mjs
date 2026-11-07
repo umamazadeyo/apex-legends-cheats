@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { resolveAstroSitemapPart, resolveDistOutputRoot } from './resolve-dist-output.mjs';
-import { getPublicSiteOrigin } from './site-origin.mjs';
+import { getSitemapSiteOrigin, normalizeSitemapXmlUrls } from './site-origin.mjs';
 
 const root = process.cwd();
 const outputRoot = resolveDistOutputRoot(root);
@@ -41,10 +41,11 @@ function formatUrlset(xml) {
     .replace(/<\/priority>/g, '</priority>\n');
 }
 
-const formatted = formatUrlset(raw);
+const sanitized = normalizeSitemapXmlUrls(raw);
+const formatted = formatUrlset(sanitized);
 fs.writeFileSync(path.join(outputRoot, 'sitemap.xml'), formatted, 'utf8');
 
-const siteOrigin = getPublicSiteOrigin();
+const siteOrigin = getSitemapSiteOrigin();
 const today = new Date().toISOString().slice(0, 10);
 const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

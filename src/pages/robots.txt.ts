@@ -1,10 +1,10 @@
 import type { APIRoute } from 'astro';
-import { getPublicSiteOrigin } from '../config/public-site-origin';
+import { PRODUCTION_SITE_ORIGIN } from '../config/production-site-origin';
 
 export const prerender = true;
 
 export const GET: APIRoute = () => {
-  const origin = getPublicSiteOrigin();
+  const origin = PRODUCTION_SITE_ORIGIN;
   const body = `User-agent: *
 Allow: /
 
