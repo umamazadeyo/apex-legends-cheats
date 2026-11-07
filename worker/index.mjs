@@ -38,6 +38,17 @@ function xmlContentType(pathname) {
   return null;
 }
 
+function previewRobotsTxt(origin) {
+  return `User-agent: *
+Allow: /
+
+Disallow: /go/
+
+Sitemap: ${origin}/sitemap.xml
+Sitemap: ${origin}/sitemap-images.xml
+`;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -46,11 +57,19 @@ export default {
       return Response.redirect(checkoutTarget, 302);
     }
 
+    if (url.pathname === '/robots.txt' && isWorkersDev(url.hostname)) {
+      const origin = `${url.protocol}//${url.host}`;
+      return new Response(previewRobotsTxt(origin), {
+        status: 200,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+      });
+    }
+
     const response = await env.SITE_ASSETS.fetch(request);
 
     const headers = new Headers(response.headers);
     const forcedXml = xmlContentType(url.pathname);
-    if (forcedXml && response.ok) {
+    if (forcedXml) {
       headers.set('Content-Type', forcedXml);
     }
 

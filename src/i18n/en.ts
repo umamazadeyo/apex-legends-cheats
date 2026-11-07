@@ -651,7 +651,7 @@ export const en: Translations = {
   },
   legalPages: {
     about: {
-      title: 'About our Apex Legends PC resource',
+      title: 'About our Apex Legends PC resource — ApexLegendCheats',
       description:
         'Tier comparisons, utilities, patch notes and support channels for Apex Legends on Windows—published on apexlegendcheats.com.',
       sections: [
@@ -659,6 +659,7 @@ export const en: Translations = {
           heading: 'Who we are',
           paragraphs: [
             'ApexLegendCheats is a PC-focused resource for Apex Legends players exploring aim assist, ESP, extended view and Skin Changer workflows. We publish tier comparisons, setup guides, and live status notes so you can compare Apex Legends cheats before checkout.',
+            'Editorial pages are written in-house; tier module lists and pricing always follow the live product pages and checkout flow.',
             'Game names are used for identification only.',
           ],
         },

@@ -13,9 +13,9 @@ export interface PageSeoEntry {
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': { ...HOME_SITE_META },
   '/products/apex-legends-cheats/': {
-    title: 'Buy Apex Legends Cheats | Lite, Pro & Elite',
+    title: 'ESP & Aimbot – Apex Legends Tier Hub | ApexLegendCheats',
     description:
-      'Buy Apex Legends cheat access: compare Lite (ESP & awareness), Pro (scripts) and Elite on the product hub. Utilities: HWID Spoofer, UGC, Skin Changer.',
+      'Player ESP, aimbot scripts and wallhack-style overlays on Lite, Pro and Elite—compare each tier’s module list before secure checkout.',
   },
   '/pricing/': {
     title: 'Apex Legends Cheat Pricing & Subscriptions | ApexLegendCheats',
@@ -25,7 +25,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/features/': {
     title: 'Apex Legends Cheat Features | ESP, Aim Scripts & Tiers',
     description:
-      'See how ESP, aim scripts and overlays map to Lite, Pro and Elite—same module names as the tier pages, without extra marketing claims.',
+      'Features: see how ESP, aim scripts and overlays map to Lite, Pro and Elite—same module names as the tier pages, without extra marketing claims.',
   },
   '/products/apex-legends-cheats/utilities/': {
     title: 'Apex Legends Utilities | HWID, UGC & Skin Changer',
@@ -33,19 +33,19 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Compare HWID Spoofer, UGC and Skin Changer—when each utility fits with links to full Apex Legends product pages.',
   },
   '/blog/': {
-    title: 'Apex Legends Setup Guides & Patch Notes',
+    title: 'Guides – Apex Legends Setup, Patch Notes & Tips',
     description:
       'Setup guides, tier comparisons, patch-day checks and purchase tips for Apex Legends on PC—complementing the homepage overview.',
   },
   '/forum/': {
-    title: 'Apex Legends Q&A Archive | Install & Patches',
+    title: 'Product Q&A – Apex Legends Install & Patch Archive',
     description:
-      'Staff-written answers on tiers, installs, Season 31 updates and troubleshooting. Read-only archive—use Support for private order help.',
+      'Product: staff-written answers on tiers, installs, Season 31 updates and troubleshooting. Read-only archive—use Support for private order help.',
   },
   '/faq/': {
-    title: 'Apex Legends Cheats FAQ | Tiers & Setup',
+    title: 'FAQ – Tiers & Setup for Apex Legends Cheats',
     description:
-      'Frequently asked questions on Lite, Pro and Elite modules, HWID utilities, checkout, bans, refunds and Windows setup for Apex Legends.',
+      'FAQ: frequently asked questions on Lite, Pro and Elite modules, HWID utilities, checkout, bans, refunds and Windows setup for Apex Legends.',
   },
   '/terms/': {
     title: 'Terms & Conditions | ApexLegendCheats',
@@ -58,9 +58,9 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'How apexlegendcheats.com uses analytics, cookies, and contact data when you browse or request support.',
   },
   '/about/': {
-    title: 'About Our Apex Legends PC Guides & Tools',
+    title: 'ApexLegendCheats – About Apex Legends PC Guides & Tools',
     description:
-      'Who publishes tier comparisons, utilities and patch notes for Apex Legends on PC, and how support and status updates work on this site.',
+      'ApexLegendCheats: who publishes tier comparisons, utilities and patch notes for Apex Legends on PC, and how support and status updates work.',
   },
   '/support/': {
     title: 'Support | ApexLegendCheats',
