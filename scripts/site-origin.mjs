@@ -5,8 +5,9 @@ export { PRODUCTION_SITE_ORIGIN, getSitemapSiteOrigin };
 
 export function getPublicSiteOrigin() {
   const raw = process.env.PUBLIC_SITE_ORIGIN?.trim();
-  const origin = raw || PRODUCTION_SITE_ORIGIN;
-  return origin.replace(/\/+$/, '');
+  let origin = (raw || PRODUCTION_SITE_ORIGIN).replace(/\/+$/, '');
+  if (origin.includes('workers.dev')) origin = PRODUCTION_SITE_ORIGIN;
+  return origin;
 }
 
 /** Force sitemap loc URLs to the production origin (never workers.dev or preview hosts). */

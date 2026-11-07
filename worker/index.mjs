@@ -1,6 +1,6 @@
 /**
  * Cloudflare Worker in front of static assets — adds X-Robots-Tag on *.workers.dev only.
- * Production SEO URLs remain https://apexlegendcheats.com via HTML canonicals and sitemaps.
+ * Canonicals, sitemaps, and robots always reference https://apexlegendcheats.com (never workers.dev).
  */
 
 const CHECKOUT_REDIRECTS = new Map([
@@ -60,40 +60,18 @@ function xmlContentType(pathname) {
   return null;
 }
 
-function previewRobotsTxt(origin) {
+/** Preview host: same Disallow rules; official-domain sitemap URLs only. */
+function productionRobotsTxt() {
   return `User-agent: *
 Allow: /
 
 Disallow: /go/
 
-Sitemap: ${origin}/sitemap.xml
-Sitemap: ${origin}/sitemap-images.xml
+Sitemap: ${PRODUCTION_ORIGIN}/sitemap.xml
+Sitemap: ${PRODUCTION_ORIGIN}/sitemap-images.xml
+
+# RSS: ${PRODUCTION_ORIGIN}/rss.xml
 `;
-}
-
-function normalizeTrailingSlash(pathname) {
-  if (pathname === '/' || pathname.endsWith('/')) return pathname;
-  return `${pathname}/`;
-}
-
-function rewritePreviewHtml(html, origin, pathname) {
-  const path = normalizeTrailingSlash(pathname);
-  const self = `${origin}${path}`;
-  let out = html.replaceAll(PRODUCTION_ORIGIN, origin);
-  out = out.replace(
-    /(<link rel="canonical" href=")[^"]+(")/,
-    `$1${self}$2`,
-  );
-  out = out.replace(
-    /(<link rel="alternate" hreflang="en" href=")[^"]+(")/g,
-    `$1${self}$2`,
-  );
-  out = out.replace(
-    /(<link rel="alternate" hreflang="x-default" href=")[^"]+(")/g,
-    `$1${self}$2`,
-  );
-  out = out.replace(/(<meta property="og:url" content=")[^"]+(")/, `$1${self}$2`);
-  return out;
 }
 
 export default {
@@ -109,8 +87,7 @@ export default {
     }
 
     if (url.pathname === '/robots.txt' && isWorkersDev(url.hostname)) {
-      const origin = `${url.protocol}//${url.host}`;
-      return new Response(previewRobotsTxt(origin), {
+      return new Response(productionRobotsTxt(), {
         status: 200,
         headers: { 'Content-Type': 'text/plain; charset=utf-8' },
       });
@@ -124,34 +101,7 @@ export default {
       headers.set('Content-Type', forcedXml);
     }
 
-    const preview = isWorkersDev(url.hostname);
-    const contentType = headers.get('content-type') ?? '';
-    const isHtml =
-      contentType.includes('text/html') || (preview && pathLooksIndexable(url.pathname) && !url.pathname.includes('.'));
-    const isXml = url.pathname.endsWith('.xml');
-
-    if (preview && response.ok && (isXml || isHtml)) {
-      const origin = `${url.protocol}//${url.host}`;
-      let body = await response.text();
-      if (isXml) {
-        body = body.replaceAll(PRODUCTION_ORIGIN, origin);
-      } else if (isHtml) {
-        body = rewritePreviewHtml(body, origin, url.pathname);
-      }
-      if (
-        url.pathname !== '/robots.txt' &&
-        (isIndexableMime(contentType) || pathLooksIndexable(url.pathname))
-      ) {
-        headers.set('X-Robots-Tag', 'noindex, nofollow');
-      }
-      return new Response(body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers,
-      });
-    }
-
-    if (!preview) {
+    if (!isWorkersDev(url.hostname)) {
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
@@ -161,7 +111,7 @@ export default {
 
     if (
       url.pathname !== '/robots.txt' &&
-      (isIndexableMime(contentType) || pathLooksIndexable(url.pathname))
+      (isIndexableMime(headers.get('content-type')) || pathLooksIndexable(url.pathname))
     ) {
       headers.set('X-Robots-Tag', 'noindex, nofollow');
     }

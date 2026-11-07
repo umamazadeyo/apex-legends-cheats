@@ -7,6 +7,7 @@ function normalizeOrigin(value: string): string {
 
 export function getPublicSiteOrigin(): string {
   const fromEnv = import.meta.env.PUBLIC_SITE_ORIGIN as string | undefined;
-  if (fromEnv?.trim()) return normalizeOrigin(fromEnv);
-  return DEFAULT_PUBLIC_SITE_ORIGIN;
+  const candidate = fromEnv?.trim() ? normalizeOrigin(fromEnv) : DEFAULT_PUBLIC_SITE_ORIGIN;
+  if (candidate.includes('workers.dev')) return DEFAULT_PUBLIC_SITE_ORIGIN;
+  return candidate;
 }

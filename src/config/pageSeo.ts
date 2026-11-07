@@ -13,7 +13,7 @@ export interface PageSeoEntry {
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': { ...HOME_SITE_META },
   '/products/apex-legends-cheats/': {
-    title: 'Apex Legends Cheats — Tiers & ESP | ApexLegendCheats',
+    title: 'Apex Legends Cheats — Lite, Pro & Elite',
     description:
       'Player ESP, aimbot and wallhack modules on Lite, Pro and Elite—compare live tier lists, then continue through secure checkout.',
   },
@@ -23,7 +23,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'How Apex Legends cheat pricing works on apexlegendcheats.com: module lists on tier pages, plan length and price at secure checkout. Links to subscription and purchase guides.',
   },
   '/features/': {
-    title: 'Apex Legends Cheat Features | ESP, Aim Scripts & Tiers',
+    title: 'Apex Legends Cheat Features — ESP & Scripts',
     description:
       'Features: see how ESP, aim scripts and overlays map to Lite, Pro and Elite—same module names as the tier pages, without extra marketing claims.',
   },
@@ -33,7 +33,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Compare HWID Spoofer, UGC and Skin Changer—when each utility fits with links to full Apex Legends product pages.',
   },
   '/blog/': {
-    title: 'Guides — Apex Legends Setup & Patch Tips | ApexLegendCheats',
+    title: 'Guides — Apex Legends Setup & Patch Notes',
     description:
       'Setup guides, tier comparisons, patch-day checks and purchase tips for Apex Legends on PC—complementing the homepage overview.',
   },
@@ -43,7 +43,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Product: staff-written answers on tiers, installs, Season 31 updates and troubleshooting. Read-only archive—use Support for private order help.',
   },
   '/faq/': {
-    title: 'FAQ — Apex Legends Cheats Tiers & Setup | ApexLegendCheats',
+    title: 'FAQ — Apex Legends Cheat Tiers & Setup',
     description:
       'FAQ on Lite, Pro and Elite modules, HWID utilities, checkout, bans, refunds and Windows setup for Apex Legends cheats on PC.',
   },
@@ -58,7 +58,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'How apexlegendcheats.com uses analytics, cookies, and contact data when you browse or request support.',
   },
   '/about/': {
-    title: 'About ApexLegendCheats — PC Guides | ApexLegendCheats',
+    title: 'About ApexLegendCheats — PC Guides & Tools',
     description:
       'Who runs ApexLegendCheats, what we publish for Apex Legends on PC, and how support, status updates and tier pages stay aligned with checkout.',
   },
