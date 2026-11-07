@@ -2,6 +2,7 @@
 # For native Pages Git builds, set output directory to dist/_cf_pages (or npm run build + pages:output-dir).
 name = "apexlegendcheats"
 compatibility_date = "2025-04-01"
+main = "worker/index.mjs"
 pages_build_output_dir = "./dist/_cf_pages"
 
 [build]
@@ -9,4 +10,5 @@ command = "npm run build"
 
 [assets]
 directory = "./dist/_cf_pages"
+binding = "ASSETS"
 not_found_handling = "404-page"

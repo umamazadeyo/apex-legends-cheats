@@ -1,6 +1,7 @@
 import type { FaqItem } from '../i18n/types';
 import { SUPPORT_EMAIL } from '../config/site';
 import { SITE_ORIGIN, absoluteAssetUrl, canonicalUrl, getOrganizationSameAs } from '../config/seo';
+import { checkoutUrlWithPlan, getProductPlans } from '../data/productPricing';
 
 export interface BreadcrumbItem {
   name: string;
@@ -140,11 +141,61 @@ function offerUrl(path: string): string {
   return canonicalUrl(path);
 }
 
+function productOffersFromPricing(productSlug: string, buyUrl: string) {
+  const plans = getProductPlans(productSlug);
+  const seller = {
+    '@type': 'Organization' as const,
+    name: 'ApexLegendCheats',
+  };
+  const availability = 'https://schema.org/InStock';
+
+  if (plans.length === 0) {
+    return {
+      '@type': 'Offer' as const,
+      url: offerUrl(buyUrl),
+      priceCurrency: 'USD',
+      availability,
+      seller,
+    };
+  }
+
+  if (plans.length === 1) {
+    const plan = plans[0];
+    return {
+      '@type': 'Offer' as const,
+      name: plan.label,
+      url: offerUrl(checkoutUrlWithPlan(buyUrl, plan.id)),
+      price: plan.priceUsd.toFixed(2),
+      priceCurrency: 'USD',
+      availability,
+      seller,
+    };
+  }
+
+  const prices = plans.map((plan) => plan.priceUsd);
+  return {
+    '@type': 'AggregateOffer' as const,
+    lowPrice: Math.min(...prices).toFixed(2),
+    highPrice: Math.max(...prices).toFixed(2),
+    priceCurrency: 'USD',
+    offerCount: plans.length,
+    offers: plans.map((plan) => ({
+      '@type': 'Offer',
+      name: plan.label,
+      url: offerUrl(checkoutUrlWithPlan(buyUrl, plan.id)),
+      price: plan.priceUsd.toFixed(2),
+      priceCurrency: 'USD',
+      availability,
+    })),
+  };
+}
+
 export function productSchema(input: {
   name: string;
   description: string;
   url: string;
   offerUrl: string;
+  productSlug: string;
   image?: string;
   sku?: string;
 }) {
@@ -153,22 +204,14 @@ export function productSchema(input: {
     '@type': 'Product',
     name: input.name,
     description: input.description,
-    sku: input.sku ?? input.url.replace(/\//g, '-'),
+    sku: input.sku ?? input.productSlug,
     brand: {
       '@type': 'Brand',
       name: 'ApexLegendCheats',
     },
     ...(input.image ? { image: absoluteAssetUrl(input.image) } : {}),
-    offers: {
-      '@type': 'Offer',
-      url: offerUrl(input.offerUrl),
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-      seller: {
-        '@type': 'Organization',
-        name: 'ApexLegendCheats',
-      },
-    },
+    url: canonicalUrl(input.url),
+    offers: productOffersFromPricing(input.productSlug, input.offerUrl),
   };
 }
 
@@ -185,6 +228,7 @@ export function softwareApplicationSchema(input: {
     description: input.description,
     url: input.url,
     offerUrl: input.offerUrl ?? input.url,
+    productSlug: input.url.split('/').filter(Boolean).pop() ?? 'lite',
     image: input.image,
   });
 }

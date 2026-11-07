@@ -3,17 +3,15 @@
  * After Search Console shows impressions, edit the matching path here and redeploy.
  */
 
+import { HOME_SITE_META } from './site-meta';
+
 export interface PageSeoEntry {
   title: string;
   description: string;
 }
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
-  '/': {
-    title: 'Apex Legends Cheats, ESP & Scripts | ApexLegendCheats',
-    description:
-      'Explore Apex Legends cheats for PC, including Legend ESP, minimap overlays, scripts and Auto Combo tools. Compare available tiers, features and compatibility with Steam and the EA app on Windows 10/11.',
-  },
+  '/': { ...HOME_SITE_META },
   '/products/apex-legends-cheats/': {
     title: 'Buy Apex Legends Cheats | Lite, Pro & Elite',
     description:
@@ -28,11 +26,6 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: 'Apex Legends Cheat Features | ESP, Aim Scripts & Tiers',
     description:
       'Map Apex Legends cheat features (ESP, wallhack-style overlays, aim scripts, radar) to Lite, Pro and Elite using the same comparison table as the product hub.',
-  },
-  '/products/apex-legends-cheats/elite/': {
-    title: 'Apex Legends Elite Cheats | Full Feature Build',
-    description:
-      'Elite tier: the full module list on the product page—automation, map hack suite, Skin Changer and priority patch delivery when available.',
   },
   '/products/apex-legends-cheats/utilities/': {
     title: 'Apex Legends Utilities | HWID, UGC & Skin Changer',

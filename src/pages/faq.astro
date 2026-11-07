@@ -21,9 +21,8 @@ const faqs = getAllFaqs();
   description={seo.description}
   jsonLd={[
     webPageSchema({
-      name: 'FAQ — Apex Legends Cheats & Products',
-      description:
-        'Twenty answers on products, Season 31 compatibility, Steam and EA app, ESP vs scripts, pricing, checkout, bans and support—aligned with live tier pages.',
+      name: seo.title,
+      description: seo.description,
       url: '/faq/',
     }),
     faqPageSchema(
@@ -45,6 +44,7 @@ const faqs = getAllFaqs();
           title="FAQ for cheats, products & guides"
           desc="Products, compatibility, features, pricing, checkout, bans, refunds and support—in plain language."
           titleId="faq-page-title"
+          headingLevel="h1"
         />
       </div>
     </div>

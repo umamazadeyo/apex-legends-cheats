@@ -1,8 +1,10 @@
 import { t } from '../i18n';
 import { SITE_DOMAIN as INDEXNOW_HOST_NAME } from './site';
 import { getPageSeoEntry } from './pageSeo';
+import { getPublicSiteOrigin } from './public-site-origin';
+import { HOME_SITE_META } from './site-meta';
 
-export const SITE_ORIGIN = `https://${t.site.domain}`;
+export const SITE_ORIGIN = getPublicSiteOrigin();
 
 export const DEFAULT_OG_IMAGE = '/images/gameplay/apex-legends-cheats-carousel-map-terrain-esp.webp';
 
@@ -41,14 +43,18 @@ export function absoluteAssetUrl(path: string): string {
 export function resolvePageSeo(pathname: string): { title: string; description: string } {
   const entry = getPageSeoEntry(pathname);
   if (entry) return entry;
-  return { title: t.site.title, description: t.site.description };
+  return { title: HOME_SITE_META.title, description: HOME_SITE_META.description };
 }
 
 export function pageTitle(keyword: string, brand = t.site.name): string {
   const suffix = ` | ${brand}`;
-  const max = 60;
-  if (`${keyword}${suffix}`.length <= max) return `${keyword}${suffix}`;
-  const trimmed = keyword.slice(0, Math.max(20, max - suffix.length - 1)).trim();
+  const max = 70;
+  const full = `${keyword}${suffix}`;
+  if (full.length <= max) return full;
+  const budget = Math.max(24, max - suffix.length);
+  let trimmed = keyword.slice(0, budget).trim();
+  const lastSpace = trimmed.lastIndexOf(' ');
+  if (lastSpace >= 20) trimmed = trimmed.slice(0, lastSpace).trim();
   return `${trimmed}${suffix}`;
 }
 

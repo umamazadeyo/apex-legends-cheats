@@ -277,3 +277,8 @@ export const forumPosts: ForumPost[] = [
 export function getForumPost(slug: string): ForumPost | undefined {
   return forumPosts.find((post) => post.slug === slug);
 }
+
+/** Threads that mainly restate an indexed blog guide should not compete in search. */
+export function forumPostShouldNoindex(post: ForumPost): boolean {
+  return Boolean(post.sourcePath);
+}

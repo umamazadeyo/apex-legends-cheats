@@ -3,7 +3,7 @@ import '../../styles/forum.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Icon from '../../components/icons/Icon.astro';
-import { forumPosts, getForumPost } from '../../data/forum';
+import { forumPosts, forumPostShouldNoindex, getForumPost } from '../../data/forum';
 import { pageTitle } from '../../config/seo';
 import { breadcrumbSchema, discussionForumPostingSchema } from '../../utils/schema';
 
@@ -21,9 +21,10 @@ const relatedPosts = [
   ...forumPosts.filter((item) => item.slug !== post.slug && item.category !== post.category),
 ].slice(0, 3);
 const hasSource = Boolean(post.sourcePath && post.sourceTitle);
+const noindex = forumPostShouldNoindex(post);
 ---
 
-<BaseLayout title={pageTitle(post.title)} description={post.excerpt} jsonLd={[
+<BaseLayout title={pageTitle(post.title)} description={post.excerpt} noindex={noindex} nofollow={noindex ? false : undefined} jsonLd={[
   discussionForumPostingSchema({ name: post.title, text: post.body.join('\n\n'), url: path, author: post.author, comments: post.commentsCount }),
   breadcrumbSchema(breadcrumbs),
 ]}>

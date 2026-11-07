@@ -527,17 +527,17 @@ function buildTierPages(): ProductPage[] {
       cheat.name === 'Lite' ? 'Apex Legends Lite' : cheat.name === 'Pro' ? 'Apex Legends Pro' : 'Apex Legends Elite';
     const seoBySlug: Record<string, { seoTitle: string; seoDescription: string }> = {
       lite: {
-        seoTitle: 'Apex Legends ESP & Wallhack | Lite Map Awareness',
+        seoTitle: 'Apex Legends Lite ESP & Wallhack',
         seoDescription:
           'Lite tier: player ESP, minimap overlay, extended view and stream proof—Windows PC, Steam or EA app. Compare modules before checkout.',
       },
       pro: {
-        seoTitle: 'Apex Legends Aimbot & Scripts | Pro Combat Tier',
+        seoTitle: 'Apex Legends Pro Scripts & Aimbot',
         seoDescription:
           'Pro tier: Lite ESP plus Auto Combo, movement assist, Smart Cast, Target Selector and Activator—script modules as listed on the Pro page.',
       },
       elite: {
-        seoTitle: 'Apex Legends Elite Cheats | Full Module Build',
+        seoTitle: 'Apex Legends Elite Cheats — Full Build',
         seoDescription:
           'Elite tier: full module list on the product page, limited slots when shown. Compare automation and Skin Changer before checkout.',
       },
@@ -579,7 +579,7 @@ function buildUtilityPages(): ProductPage[] {
       const content = productContent[slug];
       const utilitySeo: Record<string, { seoTitle: string; seoDescription: string }> = {
         'hwid-spoofer': {
-          seoTitle: 'HWID Spoofer for Apex Legends | PC Utility',
+          seoTitle: 'HWID Spoofer for Apex Legends PC',
           seoDescription:
             'Hardware ID tools with portal workflow—use when fresh accounts fail on one PC. Read scope and limits on the product page before use.',
         },
@@ -589,7 +589,7 @@ function buildUtilityPages(): ProductPage[] {
             'Structured appeals and case tracking for restrictions—not a guaranteed unban. Read realistic outcomes on the UGC product page.',
         },
         'unlock-all': {
-          seoTitle: 'Apex Skin Changer | Local Cosmetic Preview',
+          seoTitle: 'Apex Legends Skin Changer Preview',
           seoDescription:
             'Unlock All / Skin Changer: preview legends and weapons locally. Other players see your real inventory—see the product page for details.',
         },

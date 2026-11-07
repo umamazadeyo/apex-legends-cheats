@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { resolveAstroSitemapPart, resolveDistOutputRoot } from './resolve-dist-output.mjs';
+import { getPublicSiteOrigin } from './site-origin.mjs';
 
 const root = process.cwd();
 const outputRoot = resolveDistOutputRoot(root);
@@ -43,15 +44,16 @@ function formatUrlset(xml) {
 const formatted = formatUrlset(raw);
 fs.writeFileSync(path.join(outputRoot, 'sitemap.xml'), formatted, 'utf8');
 
+const siteOrigin = getPublicSiteOrigin();
 const today = new Date().toISOString().slice(0, 10);
 const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://apexlegendcheats.com/sitemap.xml</loc>
+    <loc>${siteOrigin}/sitemap.xml</loc>
     <lastmod>${today}</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://apexlegendcheats.com/sitemap-images.xml</loc>
+    <loc>${siteOrigin}/sitemap-images.xml</loc>
     <lastmod>${today}</lastmod>
   </sitemap>
 </sitemapindex>

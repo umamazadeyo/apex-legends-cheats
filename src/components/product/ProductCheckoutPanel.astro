@@ -114,7 +114,7 @@ const isSinglePlan = plans.length === 1;
         const plan = plans.find((p) => p.id === planId) ?? plans[0];
         if (!plan) return;
 
-        totalEl.textContent = `$${plan.priceUsd}`;
+        totalEl.textContent = `$${plan.priceUsd.toFixed(2)}`;
         noteEl.textContent = plan.priceNote;
         const separator = buyUrl.includes('?') ? '&' : '?';
         buyBtn.href = `${buyUrl}${separator}plan=${plan.id}`;

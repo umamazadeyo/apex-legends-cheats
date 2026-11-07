@@ -25,6 +25,8 @@ interface Props {
   articlePublishedTime?: string;
   articleModifiedTime?: string;
   noindex?: boolean;
+  /** When `noindex` is true, defaults to nofollow (e.g. 404). Set false for `noindex, follow`. */
+  nofollow?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -37,13 +39,17 @@ const {
   articlePublishedTime,
   articleModifiedTime,
   noindex = false,
+  nofollow,
   jsonLd,
 } = Astro.props;
 
 const canonical = canonicalUrl(Astro.url.pathname);
 const ogImageUrl = absoluteAssetUrl(ogImage);
+const blockFollow = nofollow ?? (noindex ? true : false);
 const robotsContent = noindex
-  ? 'noindex, nofollow'
+  ? blockFollow
+    ? 'noindex, nofollow'
+    : 'noindex, follow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 ---
 

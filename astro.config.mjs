@@ -1,15 +1,28 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
 
+const publicSiteOrigin =
+  (typeof process !== 'undefined' && process.env.PUBLIC_SITE_ORIGIN?.trim()) ||
+  'https://apexlegendcheats.com';
+
 export default defineConfig({
-  site: 'https://apexlegendcheats.com',
+  site: publicSiteOrigin.replace(/\/+$/, ''),
+  env: {
+    schema: {
+      PUBLIC_SITE_ORIGIN: envField.string({
+        context: 'client',
+        access: 'public',
+        optional: true,
+      }),
+    },
+  },
   trailingSlash: 'always',
   redirects: {
     '/cheats/': '/products/apex-legends-cheats/',
-    '/cheats/lite/': '/products/apex-legends-cheats/',
-    '/cheats/pro/': '/products/apex-legends-cheats/',
+    '/cheats/lite/': '/products/apex-legends-cheats/lite/',
+    '/cheats/pro/': '/products/apex-legends-cheats/pro/',
     '/cheats/elite/': '/products/apex-legends-cheats/elite/',
     '/cheats/compare/': '/blog/best-apex-legends-cheats-product-comparison-buying-guide/',
     '/products/dota-2-cheats/': '/products/apex-legends-cheats/',

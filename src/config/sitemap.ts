@@ -1,8 +1,13 @@
 import type { SitemapItem } from '@astrojs/sitemap';
 import { blogPosts } from '../data/blog';
+import { forumPosts } from '../data/forum';
 import { parseBlogDate } from '../utils/schema';
 
 const buildDate = new Date().toISOString();
+
+const noindexForumPaths = new Set(
+  forumPosts.filter((post) => post.sourcePath).map((post) => `/forum/${post.slug}/`),
+);
 
 const blogLastmod = new Map(
   blogPosts.map((post) => [`/blog/${post.slug}/`, parseBlogDate(post.date)] as const),
@@ -20,7 +25,11 @@ export function sitemapSerialize(item: SitemapItem): SitemapItem | undefined {
     return undefined;
   }
 
-  item.lastmod = buildDate;
+  if (noindexForumPaths.has(path)) {
+    return undefined;
+  }
+
+  delete item.lastmod;
 
   if (path === '/') {
     item.priority = 1;
@@ -36,7 +45,7 @@ export function sitemapSerialize(item: SitemapItem): SitemapItem | undefined {
 
   if (path === '/forum/') {
     item.priority = 0.8;
-    item.changefreq = 'daily';
+    item.changefreq = 'weekly';
     return item;
   }
 

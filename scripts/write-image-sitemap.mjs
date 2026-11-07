@@ -1,13 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { resolveDistImagesDir, resolveDistOutputRoot } from './resolve-dist-output.mjs';
+import { getPublicSiteOrigin } from './site-origin.mjs';
 
 const root = process.cwd();
 const outputRoot = resolveDistOutputRoot(root);
 const relRoot = path.relative(root, outputRoot).split(path.sep).join('/') || 'dist';
 const distImages = resolveDistImagesDir(root);
 const outPath = path.join(outputRoot, 'sitemap-images.xml');
-const base = 'https://apexlegendcheats.com';
+const base = getPublicSiteOrigin();
 
 function walkImages(dir, acc = []) {
   if (!fs.existsSync(dir)) return acc;

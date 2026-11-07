@@ -15,7 +15,7 @@ const seo = resolvePageSeo('/support/');
   jsonLd={[
     webPageSchema({
       name: t.support.title,
-      description: t.support.subtitle,
+      description: seo.description,
       url: '/support/',
     }),
     breadcrumbSchema([

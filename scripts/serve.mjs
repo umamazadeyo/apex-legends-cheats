@@ -5,6 +5,7 @@ import zlib from 'node:zlib';
 import { resolvePathRedirect } from './redirects.mjs';
 import { resolveCheckoutPathRedirect } from '../src/config/checkout-redirects.mjs';
 import { resolveDistOutputRoot } from './resolve-dist-output.mjs';
+import { PREVIEW_ROBOTS_HEADER, shouldApplyPreviewNoindex } from './preview-host.mjs';
 
 const CANONICAL_HOST = 'apexlegendcheats.com';
 const distDir = resolveDistOutputRoot();
@@ -126,6 +127,12 @@ function sendFile(req, res, filePath, statusCode = 200) {
     'Cache-Control': getCacheControl(filePath),
     Vary: 'Accept-Encoding',
   };
+
+  const host = getRequestHost(req);
+  const { pathname } = splitUrl(req.url ?? '/');
+  if (shouldApplyPreviewNoindex(host, pathname, headers['Content-Type'])) {
+    headers['X-Robots-Tag'] = PREVIEW_ROBOTS_HEADER;
+  }
 
   const encoding =
     COMPRESSIBLE.has(ext) && !res.getHeader?.('Content-Encoding')

@@ -22,7 +22,7 @@ export function getProductPlans(productSlug: string): ProductPlan[] {
 }
 
 export function formatPlanPrice(usd: number): string {
-  return `$${usd}`;
+  return `$${usd.toFixed(2)}`;
 }
 
 export function checkoutUrlWithPlan(baseUrl: string, planId: ProductPlanId): string {

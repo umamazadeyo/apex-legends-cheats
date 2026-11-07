@@ -35,6 +35,7 @@ const metaDesc = product.seoDescription ?? product.desc;
       description: metaDesc,
       url: pagePath,
       offerUrl: product.buyUrl,
+      productSlug: product.slug,
       image: product.images[0]?.src,
       sku: product.slug,
     }),

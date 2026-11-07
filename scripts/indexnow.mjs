@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { resolveDistOutputRoot } from './resolve-dist-output.mjs';
+import { getPublicSiteOrigin } from './site-origin.mjs';
 
 const root = process.cwd();
 const dist = resolveDistOutputRoot(root);
 const key = process.env.INDEXNOW_KEY?.trim();
-const host = process.env.INDEXNOW_HOST?.trim() || 'apexlegendcheats.com';
+const siteOrigin = getPublicSiteOrigin();
+const host = process.env.INDEXNOW_HOST?.trim() || new URL(siteOrigin).hostname;
 
 if (!key) {
   console.log('IndexNow: skipped (INDEXNOW_KEY not set).');

@@ -1,6 +1,7 @@
 import type { Translations } from './types';
 import { PRIMARY_CHECKOUT_PATH } from '../config/checkout';
 import { DISCORD_INVITE_URL, PRODUCT_BASE } from '../config/site';
+import { HOME_SITE_META } from '../config/site-meta';
 
 const productBase = PRODUCT_BASE;
 
@@ -8,9 +9,8 @@ export const en: Translations = {
   site: {
     name: 'ApexLegendCheats',
     domain: 'apexlegendcheats.com',
-    title: 'Apex Legends Cheats, ESP & Scripts | ApexLegendCheats',
-    description:
-      'Explore Apex Legends cheats for PC, including Legend ESP, minimap overlays, scripts and Auto Combo tools. Compare available tiers, features and compatibility with Steam and the EA app on Windows 10/11.',
+    title: HOME_SITE_META.title,
+    description: HOME_SITE_META.description,
     discord: DISCORD_INVITE_URL,
   },
   nav: [
@@ -279,7 +279,7 @@ export const en: Translations = {
   },
   products: {
     eyebrow: 'Products',
-    title: 'Apex Legends products',
+    title: 'Buy Apex Legends Cheats',
     subtitle: 'Cheat tiers plus HWID, UGC recovery, Skin Changer, and utility tools.',
     viewAll: 'View all products',
     get: 'Get',
@@ -321,7 +321,7 @@ export const en: Translations = {
     eyebrow: 'Blog',
     title: 'Guides and updates',
     subtitle: 'Aimbot and ESP setup, tier comparisons, and patch-day checks for Apex Legends.',
-    latestTitle: 'Latest articles',
+    latestTitle: 'Apex Legends cheat guides & updates',
     latestSubtitle: 'Filter by topic or sort to find setup guides, feature notes, and patch windows.',
     filterAll: 'All articles',
     sortLabel: 'Sort by',
@@ -561,7 +561,7 @@ export const en: Translations = {
   },
   support: {
     eyebrow: 'Support',
-    title: 'ApexLegendCheats support',
+    title: 'Support for Apex Legends cheats & utilities',
     subtitle: 'Let us know how we can help.',
     channels: [
       {
