@@ -67,7 +67,10 @@ const robotsContent = noindex
         document.documentElement.classList.add('fonts-pending');
       })();
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={t.site.name} />
@@ -142,7 +145,7 @@ const robotsContent = noindex
     <slot name="head" />
 
   </head>
-  <body class="min-h-screen bg-background text-foreground">
+  <body class="min-h-screen min-w-0 bg-background text-foreground">
     <button type="button" class="skip-link" data-skip-to-main>{t.ui.skipLink}</button>
     <Header />
     <main id="main-content">

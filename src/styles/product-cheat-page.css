@@ -255,8 +255,14 @@
 
 .product-detail-hero__grid .product-checkout {
   width: 100%;
-  max-width: 22rem;
+  max-width: 100%;
   margin-inline: auto;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .product-detail-hero__grid .product-checkout {
+    max-width: 22rem;
+  }
 }
 
 @media (min-width: 1024px) {

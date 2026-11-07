@@ -15,7 +15,7 @@ const why = t.whyUs;
 const lastRowIndex = why.rows.length - 1;
 ---
 
-<section id="why-us" class="py-16 md:py-24" aria-labelledby="why-title">
+<section id="why-us" class="section-paint-defer py-16 md:py-24" aria-labelledby="why-title">
   <div class="mx-auto max-w-6xl px-5">
     <header class="section-header section-header--wide">
       <p class="section-header__eyebrow">{why.eyebrow}</p>
@@ -183,7 +183,7 @@ const lastRowIndex = why.rows.length - 1;
 
 <section
   id="setup-guide"
-  class="deployment-section border-y border-border py-14 md:py-16 lg:py-20"
+  class="deployment-section section-paint-defer border-y border-border py-14 md:py-16 lg:py-20"
   aria-labelledby="setup-title"
 >
   <div class="mx-auto max-w-6xl px-5 md:px-6">
@@ -192,7 +192,7 @@ const lastRowIndex = why.rows.length - 1;
       <h2 id="setup-title" class="section-header__title">
         {t.setup.titleLead}{" "}
         <span
-          class="deployment-title-highlight relative inline-block whitespace-nowrap"
+          class="deployment-title-highlight relative inline-block max-sm:whitespace-normal sm:whitespace-nowrap"
         >
           {t.setup.titleHighlight}
           <span class="deployment-title-underline" aria-hidden="true"></span>

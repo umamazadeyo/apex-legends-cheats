@@ -14,7 +14,9 @@
     "start": "node scripts/serve.mjs",
     "astro": "astro",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "pages:output-dir": "node scripts/print-pages-output-dir.mjs"
+    "pages:output-dir": "node scripts/print-pages-output-dir.mjs",
+    "verify:responsive": "node scripts/verify-responsive-build.mjs",
+    "verify:seo": "node scripts/verify-seo-build.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

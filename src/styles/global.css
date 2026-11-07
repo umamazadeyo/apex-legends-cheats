@@ -70,6 +70,37 @@ html.dark .section-header__subtitle {
 }
 }
 
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+}
+
+#main-content {
+  min-width: 0;
+}
+
+/* Below-fold sections: skip layout/paint until near viewport (mobile + desktop). */
+.section-paint-defer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.touch-scroll-x {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
 :root {
   --floating-nav-clearance: 4.75rem;
   --scrollbar-size: 0.625rem;
