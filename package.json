@@ -7,7 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/optimize-images.mjs && astro build && node scripts/prune-dist-images.mjs && node scripts/write-image-sitemap.mjs && node scripts/finalize-sitemap.mjs && node scripts/indexnow.mjs",
+    "build": "node scripts/optimize-images.mjs && astro build && node scripts/prune-dist-images.mjs && node scripts/write-image-sitemap.mjs && node scripts/finalize-sitemap.mjs && node scripts/indexnow.mjs && node scripts/prepare-cf-deploy-dir.mjs",
+    "deploy": "wrangler deploy",
+    "deploy:pages": "npm run build && wrangler pages deploy dist/_cf_pages --project-name=apex-legends-cheats",
     "preview": "astro preview --host 0.0.0.0",
     "start": "node scripts/serve.mjs",
     "astro": "astro",

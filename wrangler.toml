@@ -1,6 +1,12 @@
-# Cloudflare Pages — Astro with @astrojs/cloudflare (or CI auto-setup) emits static assets under dist/client/.
-# Post-build sitemap scripts write into the same directory via scripts/resolve-dist-output.mjs.
-# For a plain static build (sitemap under dist/ only), set Pages build output to "dist" in the dashboard instead.
+# Static Astro site — `npx wrangler deploy` (Cloudflare CI) runs [build] then uploads [assets].
+# For native Pages Git builds, set output directory to dist/_cf_pages (or npm run build + pages:output-dir).
 name = "apexlegendcheats"
 compatibility_date = "2025-04-01"
-pages_build_output_dir = "./dist/client"
+pages_build_output_dir = "./dist/_cf_pages"
+
+[build]
+command = "npm run build"
+
+[assets]
+directory = "./dist/_cf_pages"
+not_found_handling = "404-page"
