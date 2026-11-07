@@ -23,7 +23,7 @@ export const blogPosts: BlogPostFull[] = [
     desc: 'Side-by-side look at Lite, Pro, Elite and utilities—using the same module lists as the product pages.',
     date: 'Nov 6, 2026',
     readTime: '12 min read',
-    seoTitle: 'Compare Cheats by Tier | ApexLegendCheats',
+    seoTitle: 'Apex Legends Cheats: Tier Compare',
     seoDescription:
       'Compare Apex Legends cheats by tier using the live module lists for Lite, Pro, Elite and utilities—Season 31 notes without invented features.',
     featured: true,
@@ -86,7 +86,7 @@ export const blogPosts: BlogPostFull[] = [
     desc: 'What this site shows about pricing and plans—and what you confirm only at checkout.',
     date: 'Nov 5, 2026',
     readTime: '9 min read',
-    seoTitle: 'Cheat Pricing & Plans | ApexLegendCheats',
+    seoTitle: 'Apex Legends Cheat Pricing & Plans',
     seoDescription:
       'Apex Legends cheats pricing: what tier pages show vs what the checkout lists for subscription options—no invented prices in the article.',
     featured: true,
@@ -131,7 +131,7 @@ export const blogPosts: BlogPostFull[] = [
     desc: 'A practical buying guide: match goals to tiers, verify status, and use official pages—not forum rumors.',
     date: 'Nov 4, 2026',
     readTime: '11 min read',
-    seoTitle: 'Best Cheats Buying Guide | ApexLegendCheats',
+    seoTitle: 'Best Apex Legends Cheats — Buying Guide',
     seoDescription:
       'Best Apex Legends cheats buying guide: match goals to Lite, Pro or Elite, acknowledge ban risk, and verify status—linked to live product pages.',
     featured: true,

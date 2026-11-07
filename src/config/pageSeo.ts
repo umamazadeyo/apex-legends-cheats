@@ -13,9 +13,9 @@ export interface PageSeoEntry {
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': { ...HOME_SITE_META },
   '/products/apex-legends-cheats/': {
-    title: 'ESP & Aimbot – Apex Legends Tier Hub | ApexLegendCheats',
+    title: 'Apex Legends Cheats — Tiers & ESP | ApexLegendCheats',
     description:
-      'Player ESP, aimbot scripts and wallhack-style overlays on Lite, Pro and Elite—compare each tier’s module list before secure checkout.',
+      'Player ESP, aimbot and wallhack modules on Lite, Pro and Elite—compare live tier lists, then continue through secure checkout.',
   },
   '/pricing/': {
     title: 'Apex Legends Cheat Pricing & Subscriptions | ApexLegendCheats',
@@ -33,7 +33,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Compare HWID Spoofer, UGC and Skin Changer—when each utility fits with links to full Apex Legends product pages.',
   },
   '/blog/': {
-    title: 'Guides – Apex Legends Setup, Patch Notes & Tips',
+    title: 'Guides — Apex Legends Setup & Patch Tips | ApexLegendCheats',
     description:
       'Setup guides, tier comparisons, patch-day checks and purchase tips for Apex Legends on PC—complementing the homepage overview.',
   },
@@ -43,9 +43,9 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Product: staff-written answers on tiers, installs, Season 31 updates and troubleshooting. Read-only archive—use Support for private order help.',
   },
   '/faq/': {
-    title: 'FAQ – Tiers & Setup for Apex Legends Cheats',
+    title: 'FAQ — Apex Legends Cheats Tiers & Setup | ApexLegendCheats',
     description:
-      'FAQ: frequently asked questions on Lite, Pro and Elite modules, HWID utilities, checkout, bans, refunds and Windows setup for Apex Legends.',
+      'FAQ on Lite, Pro and Elite modules, HWID utilities, checkout, bans, refunds and Windows setup for Apex Legends cheats on PC.',
   },
   '/terms/': {
     title: 'Terms & Conditions | ApexLegendCheats',
@@ -58,9 +58,9 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'How apexlegendcheats.com uses analytics, cookies, and contact data when you browse or request support.',
   },
   '/about/': {
-    title: 'ApexLegendCheats – About Apex Legends PC Guides & Tools',
+    title: 'About ApexLegendCheats — PC Guides | ApexLegendCheats',
     description:
-      'ApexLegendCheats: who publishes tier comparisons, utilities and patch notes for Apex Legends on PC, and how support and status updates work.',
+      'Who runs ApexLegendCheats, what we publish for Apex Legends on PC, and how support, status updates and tier pages stay aligned with checkout.',
   },
   '/support/': {
     title: 'Support | ApexLegendCheats',

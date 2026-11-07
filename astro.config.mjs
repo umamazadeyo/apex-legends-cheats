@@ -2,6 +2,10 @@ import { defineConfig, envField } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
+import { CHECKOUT_PATH_REDIRECTS } from './src/config/checkout-redirects.mjs';
+
+/** Static 302 stubs so /go/* works without the Worker (Cloudflare assets). */
+const checkoutRedirects = Object.fromEntries(CHECKOUT_PATH_REDIRECTS);
 
 const publicSiteOrigin =
   (typeof process !== 'undefined' && process.env.PUBLIC_SITE_ORIGIN?.trim()) ||
@@ -20,6 +24,7 @@ export default defineConfig({
   },
   trailingSlash: 'always',
   redirects: {
+    ...checkoutRedirects,
     '/cheats/': '/products/apex-legends-cheats/',
     '/cheats/lite/': '/products/apex-legends-cheats/lite/',
     '/cheats/pro/': '/products/apex-legends-cheats/pro/',

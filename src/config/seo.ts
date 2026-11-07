@@ -2,6 +2,7 @@ import { t } from '../i18n';
 import { SITE_DOMAIN as INDEXNOW_HOST_NAME } from './site';
 import { getPageSeoEntry } from './pageSeo';
 import { getPublicSiteOrigin } from './public-site-origin';
+import { isWorkersDevHostname } from '../utils/preview-host';
 import { HOME_SITE_META } from './site-meta';
 
 export const SITE_ORIGIN = getPublicSiteOrigin();
@@ -34,6 +35,17 @@ export function canonicalUrl(pathname: string): string {
   return `${SITE_ORIGIN}${path}`;
 }
 
+/** Self-canonical on workers.dev preview; production host uses PUBLIC_SITE_ORIGIN. */
+export function canonicalUrlFromRequest(requestUrl: URL): string {
+  let path = requestUrl.pathname || '/';
+  if (!path.startsWith('/')) path = `/${path}`;
+  if (path !== '/' && !path.endsWith('/')) path = `${path}/`;
+  const origin = isWorkersDevHostname(requestUrl.hostname)
+    ? `${requestUrl.protocol}//${requestUrl.host}`
+    : getPublicSiteOrigin();
+  return `${origin}${path}`;
+}
+
 export function absoluteAssetUrl(path: string): string {
   if (path.startsWith('http://') || path.startsWith('https://')) return path;
   const normalized = path.startsWith('/') ? path : `/${path}`;
@@ -48,7 +60,7 @@ export function resolvePageSeo(pathname: string): { title: string; description: 
 
 export function pageTitle(keyword: string, brand = t.site.name): string {
   const suffix = ` | ${brand}`;
-  const max = 70;
+  const max = 60;
   const full = `${keyword}${suffix}`;
   if (full.length <= max) return full;
   const budget = Math.max(24, max - suffix.length);
