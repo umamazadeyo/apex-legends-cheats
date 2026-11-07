@@ -1,9 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { resolveDistImagesDir, resolveDistOutputRoot } from './resolve-dist-output.mjs';
 
 const root = process.cwd();
-const distImages = path.join(root, 'dist', 'images');
-const outPath = path.join(root, 'dist', 'sitemap-images.xml');
+const outputRoot = resolveDistOutputRoot(root);
+const relRoot = path.relative(root, outputRoot).split(path.sep).join('/') || 'dist';
+const distImages = resolveDistImagesDir(root);
+const outPath = path.join(outputRoot, 'sitemap-images.xml');
 const base = 'https://apexlegendcheats.com';
 
 function walkImages(dir, acc = []) {
@@ -19,8 +22,23 @@ function walkImages(dir, acc = []) {
   return acc;
 }
 
+const imagesRootExists = fs.existsSync(distImages);
 const files = walkImages(distImages);
 const today = new Date().toISOString().slice(0, 10);
+
+if (!imagesRootExists) {
+  console.error(
+    `write-image-sitemap: images directory missing at ${path.relative(root, distImages)} (output root: ${relRoot}).`,
+  );
+  process.exit(1);
+}
+
+if (files.length === 0) {
+  console.error(
+    `write-image-sitemap: no WebP files under ${path.relative(root, distImages)} — check astro build output path.`,
+  );
+  process.exit(1);
+}
 
 const body = files
   .map((file) => {
@@ -37,4 +55,4 @@ ${body}
 `;
 
 fs.writeFileSync(outPath, xml, 'utf8');
-console.log(`Image sitemap: ${files.length} WebP URLs → dist/sitemap-images.xml`);
+console.log(`Image sitemap: ${files.length} WebP URLs → ${relRoot}/sitemap-images.xml`);

@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { resolveDistOutputRoot } from './resolve-dist-output.mjs';
 
 const root = process.cwd();
-const dist = path.join(root, 'dist');
+const dist = resolveDistOutputRoot(root);
 const key = process.env.INDEXNOW_KEY?.trim();
 const host = process.env.INDEXNOW_HOST?.trim() || 'apexlegendcheats.com';
 

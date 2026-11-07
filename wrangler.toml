@@ -1,0 +1,6 @@
+# Cloudflare Pages — Astro with @astrojs/cloudflare (or CI auto-setup) emits static assets under dist/client/.
+# Post-build sitemap scripts write into the same directory via scripts/resolve-dist-output.mjs.
+# For a plain static build (sitemap under dist/ only), set Pages build output to "dist" in the dashboard instead.
+name = "apexlegendcheats"
+compatibility_date = "2025-04-01"
+pages_build_output_dir = "./dist/client"

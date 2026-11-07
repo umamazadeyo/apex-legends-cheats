@@ -4,9 +4,10 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import { resolvePathRedirect } from './redirects.mjs';
 import { resolveCheckoutPathRedirect } from '../src/config/checkout-redirects.mjs';
+import { resolveDistOutputRoot } from './resolve-dist-output.mjs';
 
 const CANONICAL_HOST = 'apexlegendcheats.com';
-const distDir = path.resolve('dist');
+const distDir = resolveDistOutputRoot();
 const port = Number(process.env.PORT) || 3000;
 
 const MIME = {

@@ -1,12 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { resolveAstroSitemapPart, resolveDistOutputRoot } from './resolve-dist-output.mjs';
 
 const root = process.cwd();
-const dist = path.join(root, 'dist');
-const source = path.join(dist, 'sitemap-0.xml');
+const outputRoot = resolveDistOutputRoot(root);
+const relRoot = path.relative(root, outputRoot).split(path.sep).join('/') || 'dist';
+const source = resolveAstroSitemapPart(outputRoot);
 
-if (!fs.existsSync(source)) {
-  console.error('finalize-sitemap: dist/sitemap-0.xml not found — run astro build first.');
+if (!source) {
+  console.error(
+    `finalize-sitemap: no Astro sitemap part (sitemap-0.xml) under ${relRoot} — run astro build first.`,
+  );
+  console.error(`Searched: ${relRoot}/sitemap-0.xml and child refs from ${relRoot}/sitemap-index.xml`);
   process.exit(1);
 }
 
@@ -14,7 +19,7 @@ const raw = fs.readFileSync(source, 'utf8');
 const urlCount = (raw.match(/<url>/g) ?? []).length;
 
 if (urlCount === 0) {
-  console.error('finalize-sitemap: sitemap-0.xml contains no URLs.');
+  console.error(`finalize-sitemap: ${path.basename(source)} contains no URLs.`);
   process.exit(1);
 }
 
@@ -36,7 +41,7 @@ function formatUrlset(xml) {
 }
 
 const formatted = formatUrlset(raw);
-fs.writeFileSync(path.join(dist, 'sitemap.xml'), formatted, 'utf8');
+fs.writeFileSync(path.join(outputRoot, 'sitemap.xml'), formatted, 'utf8');
 
 const today = new Date().toISOString().slice(0, 10);
 const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -51,7 +56,7 @@ const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
   </sitemap>
 </sitemapindex>
 `;
-fs.writeFileSync(path.join(dist, 'sitemap-index.xml'), indexXml, 'utf8');
-fs.writeFileSync(path.join(dist, 'sitemap-0.xml'), formatted, 'utf8');
+fs.writeFileSync(path.join(outputRoot, 'sitemap-index.xml'), indexXml, 'utf8');
+fs.writeFileSync(path.join(outputRoot, 'sitemap-0.xml'), formatted, 'utf8');
 
-console.log(`Sitemap finalized: ${urlCount} URLs → dist/sitemap.xml`);
+console.log(`Sitemap finalized: ${urlCount} URLs → ${relRoot}/sitemap.xml`);
