@@ -63,6 +63,15 @@ function checkPage(rel, label) {
   }
   if (!html.includes('hreflang="en"')) errors.push(`${label}: missing hreflang en`);
   if (!html.includes('hreflang="x-default"')) errors.push(`${label}: missing x-default`);
+  if (label === 'blog') {
+    if (!html.includes('data-blog-filters')) errors.push('blog: missing data-blog-filters toolbar');
+    if (!html.includes('Symbol("blog-filters-abort")')) {
+      errors.push('blog: missing bundled blog-index filter script');
+    }
+    if (/<script(?![^>]*type=["']module["'])[^>]*>[\s\S]*?\bimport\s+/.test(html)) {
+      errors.push('blog: import in non-module inline script (filters will not run)');
+    }
+  }
 }
 
 const pages = [
