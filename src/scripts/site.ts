@@ -140,6 +140,23 @@ function initHashOnLoad() {
   requestAnimationFrame(() => scrollToId(id));
 }
 
+/** Checkout CTAs: navigate immediately (no interaction delay on animated buttons). */
+function initCheckoutLinks() {
+  document.addEventListener(
+    'click',
+    (event) => {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest<HTMLAnchorElement>('a[href^="/go/"]');
+      if (!link || event.defaultPrevented) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      if (link.target && link.target !== '_self') return;
+      event.preventDefault();
+      window.location.assign(link.href);
+    },
+    true,
+  );
+}
+
 function bootSite() {
   initFonts();
   initFaqFilters();
@@ -148,6 +165,7 @@ function bootSite() {
   initHashOnLoad();
   initSkipLink();
   initThemeMetaColor();
+  initCheckoutLinks();
 }
 
 if (document.readyState === 'loading') {

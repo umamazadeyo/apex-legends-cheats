@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { resolveDistOutputRoot } from './resolve-dist-output.mjs';
+import { patchGoRedirectHtml } from './patch-go-redirect-html.mjs';
 
 const cwd = process.cwd();
 const distRoot = path.join(cwd, 'dist');
@@ -48,5 +49,11 @@ for (const name of sitemapFiles) {
     console.log(`prepare-cf-deploy-dir: copied missing ${name} into _cf_pages`);
   }
 }
+
+const goPatched = patchGoRedirectHtml(target);
+if (goPatched > 0) {
+  console.log(`Instant /go/ redirect script: ${goPatched} page(s) in _cf_pages`);
+}
+patchGoRedirectHtml(source);
 
 console.log(`Cloudflare deploy bundle: ${path.relative(cwd, source)} → dist/_cf_pages`);

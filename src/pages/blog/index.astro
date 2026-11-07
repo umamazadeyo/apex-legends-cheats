@@ -50,7 +50,13 @@ const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
   <section class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
       <Breadcrumbs items={breadcrumbs} />
-      {featured && <BlogCard post={featured} index={0} eager showDate layout="featured" />}
+      {
+        featured && (
+          <div id="blog-featured-slot">
+            <BlogCard post={featured} index={0} eager showDate layout="featured" />
+          </div>
+        )
+      }
     </div>
   </section>
 

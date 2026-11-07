@@ -21,8 +21,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Tier comparison table for Apex Legends cheats Lite Pro Elite and utilities on PC',
     desc: 'Side-by-side look at Lite, Pro, Elite and utilities—using the same module lists as the product pages.',
-    date: 'Nov 6, 2026',
-    readTime: '12 min read',
+    date: 'Nov 7, 2026',
+    readTime: '6 min read',
     seoTitle: 'Apex Legends Cheats: Tier Compare',
     seoDescription:
       'Compare Apex Legends cheats by tier using the live module lists for Lite, Pro, Elite and utilities—Season 31 notes without invented features.',
@@ -84,8 +84,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Subscription renewal calendar cue for Apex Legends cheats plan comparison',
     desc: 'What this site shows about pricing and plans—and what you confirm only at checkout.',
-    date: 'Nov 5, 2026',
-    readTime: '9 min read',
+    date: 'Sep 14, 2026',
+    readTime: '4 min read',
     seoTitle: 'Apex Legends Cheat Pricing & Plans',
     seoDescription:
       'Apex Legends cheats pricing: what tier pages show vs what the checkout lists for subscription options—no invented prices in the article.',
@@ -129,8 +129,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Secure checkout screen for buying Apex Legends cheats with order email ready',
     desc: 'A practical buying guide: match goals to tiers, verify status, and use official pages—not forum rumors.',
-    date: 'Nov 4, 2026',
-    readTime: '11 min read',
+    date: 'Aug 6, 2026',
+    readTime: '7 min read',
     seoTitle: 'Best Apex Legends Cheats — Buying Guide',
     seoDescription:
       'Best Apex Legends cheats buying guide: match goals to Lite, Pro or Elite, acknowledge ban risk, and verify status—linked to live product pages.',
@@ -174,8 +174,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Combat aim script panel from Apex Legends cheats Pro tier feature preview',
     desc: 'How aim assist and script modules are described on Pro and Elite—without inventing slider values or prices.',
-    date: 'Nov 3, 2026',
-    readTime: '10 min read',
+    date: 'Jul 21, 2026',
+    readTime: '5 min read',
     seoTitle: 'Apex Legends Aimbot | Scripts on Pro & Elite',
     seoDescription:
       'Apex Legends aimbot topics mapped to Auto Combo, movement assist, Smart Cast and related modules on Pro and Elite—pricing only at checkout.',
@@ -218,8 +218,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Terrain map overlay example for Apex Legends cheats ESP minimap awareness',
     desc: 'ESP and minimap overlays as listed on Lite through Elite—compare without overlapping the standalone feature page.',
-    date: 'Nov 2, 2026',
-    readTime: '10 min read',
+    date: 'Jun 18, 2026',
+    readTime: '6 min read',
     seoTitle: 'Apex Legends ESP Compared | Lite to Elite',
     seoDescription:
       'Apex Legends ESP compared across tiers using the same lists as the product pages—minimap, legend boxes and awareness stack without extra promises.',
@@ -259,8 +259,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Wider FOV stance shot illustrating Apex Legends cheats wallhack vision reads',
     desc: 'Wallhack-style vision as part of the ESP stack—tied to Lite, Pro and Elite lists.',
-    date: 'Nov 1, 2026',
-    readTime: '8 min read',
+    date: 'May 30, 2026',
+    readTime: '4 min read',
     seoTitle: 'Apex Legends Wallhack | ESP & Tier Mapping',
     seoDescription:
       'Apex Legends wallhack searches explained as ESP and minimap overlays on Lite, Pro and Elite—pricing only on checkout.',
@@ -295,8 +295,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Knockdown finisher frame tied to Apex Legends cheats trigger assist modules',
     desc: 'Trigger-style firing assists live inside the script modules Pro and Elite list—verify names on the product page.',
-    date: 'Oct 31, 2026',
-    readTime: '8 min read',
+    date: 'May 12, 2026',
+    readTime: '3 min read',
     seoTitle: 'Apex Legends Triggerbot | Script Modules',
     seoDescription:
       'Apex Legends triggerbot topics tied to Pro and Elite script modules (Auto Combo, movement assist, Activator)—no secret binds published here.',
@@ -327,8 +327,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Squad nameplates on radar style HUD using Apex Legends cheats overlay suite',
     desc: 'Minimap and positional overlays compared to the full ESP list on each tier.',
-    date: 'Oct 30, 2026',
-    readTime: '8 min read',
+    date: 'Apr 24, 2026',
+    readTime: '5 min read',
     seoTitle: 'Apex Legends Radar | Minimap & ESP Context',
     seoDescription:
       'Apex Legends radar as minimap and positional overlays bundled with ESP on tier pages—no separate radar product unless listed.',
@@ -359,8 +359,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Subscription renewal reminder graphic for Apex Legends cheats storefront plans',
     desc: 'How to read subscription length when daily, weekly or monthly labels appear at checkout.',
-    date: 'Oct 29, 2026',
-    readTime: '7 min read',
+    date: 'Mar 28, 2026',
+    readTime: '4 min read',
     seoTitle: 'Apex Legends Cheat Subscription | Plan Length at Checkout',
     seoDescription:
       'Apex Legends cheat subscription length (daily, weekly, monthly) is confirmed on the external checkout—this guide lists safe questions before you pay.',
@@ -396,8 +396,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'EA app and Steam launcher view for Apex Legends cheats Windows PC setup',
     desc: 'Windows, Steam, EA app and patch expectations straight from the product requirement blocks.',
-    date: 'Oct 28, 2026',
-    readTime: '9 min read',
+    date: 'Mar 10, 2026',
+    readTime: '7 min read',
     seoTitle: 'Apex Legends Cheats for PC | Windows & Clients',
     seoDescription:
       'Apex Legends cheats for PC: Windows 10/11, Steam and EA app requirements as printed on product pages plus Season 31 patch workflow tips.',
@@ -432,8 +432,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Elite bundle module tiles listing Apex Legends cheats automation extras',
     desc: 'How “bundles” map to Lite, Pro, Elite and optional utilities on the same hub.',
-    date: 'Oct 27, 2026',
-    readTime: '8 min read',
+    date: 'Feb 22, 2026',
+    readTime: '5 min read',
     seoTitle: 'Apex Legends Cheat Bundles | Tiers & Utilities',
     seoDescription:
       'Apex Legends cheat bundles explained as Lite, Pro, Elite stacks plus optional HWID or Skin Changer—compare features on live pages.',
@@ -464,8 +464,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Portal access email preview after Apex Legends cheats purchase completes',
     desc: 'What the site states about checkout, portal delivery and support—aligned with Terms & Conditions.',
-    date: 'Oct 26, 2026',
-    readTime: '9 min read',
+    date: 'Feb 4, 2026',
+    readTime: '6 min read',
     seoTitle: 'Buy Apex Legends Cheats | Payment & Access',
     seoDescription:
       'Buy Apex Legends cheats: secure checkout, portal delivery after payment, and support paths—aligned with Terms; no fake instant download claims.',
@@ -505,8 +505,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Feature checklist graphic comparing Apex Legends cheats Lite Pro and Elite tiers',
     desc: 'One checklist that points back to feature lists, pricing page and PC requirements.',
-    date: 'Oct 25, 2026',
-    readTime: '10 min read',
+    date: 'Jan 17, 2026',
+    readTime: '5 min read',
     seoTitle: 'Apex Legends Cheat Comparison | Features & Pricing',
     seoDescription:
       'Apex Legends cheat comparison checklist: tie modules, PC requirements and pricing hub together before you open checkout.',
@@ -525,8 +525,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Loader status ribbon reminding Apex Legends cheats users to verify Cipher patches',
     desc: 'How to read status, rebuild after patches, and stay aligned with Season 31.',
-    date: 'Oct 24, 2026',
-    readTime: '9 min read',
+    date: 'Oct 19, 2026',
+    readTime: '3 min read',
     seoTitle: 'Apex Legends Cheat Updates | Patch & EAC',
     seoDescription:
       'Apex Legends cheat updates after Cipher patches: use status banner, Discord #status and portal builds—Season 31 ranked bans and Crypto changes noted generally.',
@@ -561,8 +561,8 @@ export const blogPosts: BlogPostFull[] = [
     imageAlt:
       'Flowchart art for choosing Apex Legends cheats awareness or script heavy builds',
     desc: 'Decision paths between Lite, Pro, Elite and utilities—links to comparisons and FAQs.',
-    date: 'Oct 23, 2026',
-    readTime: '10 min read',
+    date: 'Jan 8, 2026',
+    readTime: '6 min read',
     seoTitle: 'Apex Legends Cheat Products | Choose a Tier',
     seoDescription:
       'Apex Legends cheat products: choose Lite, Pro, Elite or a utility using live module lists—links to comparisons, FAQ and forum threads.',

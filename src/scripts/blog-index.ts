@@ -5,18 +5,25 @@ export function initBlogIndexFilters(emptyMessage: string) {
   const grid = document.getElementById('blog-grid');
   const emptyEl = document.getElementById('blog-empty');
   const sortRoot = document.getElementById('blog-sort-select');
+  const featuredSlot = document.getElementById('blog-featured-slot');
   if (!grid) return;
 
-  /** Tear down prior listeners when init runs again (e.g. View Transitions). */
-  const prev = (grid as HTMLElement & { [BLOG_FILTERS_ABORT]?: AbortController })[BLOG_FILTERS_ABORT];
+  const host = grid.parentElement ?? document.body;
+  const prev = (host as HTMLElement & { [BLOG_FILTERS_ABORT]?: AbortController })[BLOG_FILTERS_ABORT];
   prev?.abort();
   const abort = new AbortController();
-  (grid as HTMLElement & { [BLOG_FILTERS_ABORT]?: AbortController })[BLOG_FILTERS_ABORT] = abort;
+  (host as HTMLElement & { [BLOG_FILTERS_ABORT]?: AbortController })[BLOG_FILTERS_ABORT] = abort;
   const signal = abort.signal;
 
   const filters = document.querySelectorAll<HTMLButtonElement>('[data-blog-filter]');
 
-  const cards = () => [...grid.querySelectorAll<HTMLElement>('[data-blog-card]')];
+  const cards = () => {
+    const list: HTMLElement[] = [];
+    const featured = featuredSlot?.querySelector<HTMLElement>('[data-blog-card]');
+    if (featured) list.push(featured);
+    list.push(...grid.querySelectorAll<HTMLElement>('[data-blog-card]'));
+    return list;
+  };
 
   const activeTag = () =>
     document.querySelector<HTMLButtonElement>('[data-blog-filter][aria-pressed="true"]')?.getAttribute(
@@ -31,17 +38,6 @@ export function initBlogIndexFilters(emptyMessage: string) {
     if (fromAttr) return fromAttr;
     const input = sortRoot?.querySelector<HTMLInputElement>('[data-sw-select-input]');
     return input?.value || 'newest';
-  };
-
-  const isBlogSortEvent = (event: Event) => {
-    const root = getSortSelectRoot();
-    if (!root || !sortRoot) return false;
-    const target = event.target;
-    if (target instanceof Node) {
-      if (root === target || root.contains(target)) return true;
-    }
-    const path = typeof event.composedPath === 'function' ? event.composedPath() : [];
-    return path.includes(root) || path.includes(sortRoot);
   };
 
   const compareCards = (a: HTMLElement, b: HTMLElement, sort: string) => {
@@ -59,9 +55,10 @@ export function initBlogIndexFilters(emptyMessage: string) {
     const tag = activeTag();
     const sort = getSort();
     const items = cards();
+    const gridCards = [...grid.querySelectorAll<HTMLElement>('[data-blog-card]')];
 
-    const sorted = [...items].sort((a, b) => compareCards(a, b, sort));
-    sorted.forEach((el) => grid.appendChild(el));
+    const sortedGrid = [...gridCards].sort((a, b) => compareCards(a, b, sort));
+    sortedGrid.forEach((el) => grid.appendChild(el));
 
     let visibleCount = 0;
     items.forEach((el) => {
@@ -69,6 +66,13 @@ export function initBlogIndexFilters(emptyMessage: string) {
       el.classList.toggle('hidden', !match);
       if (match) visibleCount += 1;
     });
+
+    if (featuredSlot) {
+      const featuredCard = featuredSlot.querySelector('[data-blog-card]');
+      const showFeatured =
+        featuredCard && (tag === 'all' || featuredCard.getAttribute('data-tag') === tag);
+      featuredSlot.classList.toggle('hidden', !showFeatured);
+    }
 
     if (emptyEl) {
       emptyEl.classList.toggle('hidden', visibleCount > 0);
@@ -88,15 +92,35 @@ export function initBlogIndexFilters(emptyMessage: string) {
     );
   });
 
-  const onSortChange = (event: Event) => {
-    if (!isBlogSortEvent(event)) return;
-    apply();
+  const bindSortListeners = () => {
+    const selectRoot = getSortSelectRoot();
+    const input = sortRoot?.querySelector<HTMLInputElement>('[data-sw-select-input]');
+    if (!selectRoot && !input) return false;
+
+    selectRoot?.addEventListener('starwind:value-change', apply, { signal });
+    input?.addEventListener('change', apply, { signal });
+    input?.addEventListener('input', apply, { signal });
+
+    if (selectRoot) {
+      const observer = new MutationObserver(() => apply());
+      observer.observe(selectRoot, { attributes: true, attributeFilter: ['data-value'] });
+      signal.addEventListener('abort', () => observer.disconnect());
+    }
+
+    return true;
   };
 
-  document.addEventListener('starwind:value-change', onSortChange, { signal });
+  document.addEventListener(
+    'starwind:init',
+    () => {
+      bindSortListeners();
+      apply();
+    },
+    { signal },
+  );
 
-  // Starwind select hydrates after first paint — re-apply once ready.
+  bindSortListeners();
   requestAnimationFrame(apply);
   window.setTimeout(apply, 0);
-  window.setTimeout(apply, 50);
+  window.setTimeout(apply, 120);
 }

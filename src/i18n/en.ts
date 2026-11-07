@@ -323,7 +323,7 @@ export const en: Translations = {
     subtitle: 'Aimbot and ESP setup, tier comparisons, and patch-day checks for Apex Legends.',
     latestTitle: 'Apex Legends cheat guides & updates',
     latestSubtitle: 'Filter by topic or sort to find setup guides, feature notes, and patch windows.',
-    filterAll: 'All articles',
+    filterAll: 'All Articles',
     sortLabel: 'Sort by',
     sortNewest: 'Newest first',
     sortOldest: 'Oldest first',

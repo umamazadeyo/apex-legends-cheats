@@ -50,8 +50,11 @@ export function getRelatedBlogPostsForProduct(relatedSlugs: string[], limit = 6)
   return [...curated, ...fill].slice(0, limit);
 }
 
+const BLOG_TAG_ORDER = ['Features', 'Guides', 'Setup', 'Updates'] as const;
+
 export function getBlogTags() {
-  return [...new Set(blogPosts.map((p) => p.tag))].sort((a, b) => a.localeCompare(b));
+  const used = new Set(blogPosts.map((p) => p.tag));
+  return BLOG_TAG_ORDER.filter((tag) => used.has(tag));
 }
 
 export function getBlogPostTimestamp(date: string) {
