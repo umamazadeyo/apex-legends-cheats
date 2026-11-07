@@ -33,7 +33,7 @@ function pathLooksIndexable(pathname) {
 
 export default {
   async fetch(request, env) {
-    const response = await env.ASSETS.fetch(request);
+    const response = await env.SITE_ASSETS.fetch(request);
     const url = new URL(request.url);
 
     if (!isWorkersDev(url.hostname)) {

@@ -10,5 +10,5 @@ command = "npm run build"
 
 [assets]
 directory = "./dist/_cf_pages"
-binding = "ASSETS"
+binding = "SITE_ASSETS"
 not_found_handling = "404-page"
