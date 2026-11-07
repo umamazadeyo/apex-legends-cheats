@@ -75,6 +75,7 @@ const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
           class="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           role="toolbar"
           aria-label="Filter articles by topic"
+          data-blog-filters
         >
           <button
             type="button"
@@ -116,7 +117,12 @@ const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
         ))}
       </div>
 
-      <p id="blog-empty" class="mt-10 hidden text-center text-muted-foreground" role="status">
+      <p
+        id="blog-empty"
+        class="mt-10 hidden text-center text-muted-foreground"
+        role="status"
+        data-empty-text={t.blog.emptyFilter}
+      >
         {t.blog.emptyFilter}
       </p>
 
@@ -129,13 +135,17 @@ const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
     </div>
   </section>
 
-  <script define:vars={{ emptyMessage: t.blog.emptyFilter }}>
+  <script>
     import { initBlogIndexFilters } from '../../scripts/blog-index.ts';
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => initBlogIndexFilters(emptyMessage));
-    } else {
-      initBlogIndexFilters(emptyMessage);
-    }
+    const bootBlogIndex = () => {
+      const msg =
+        document.getElementById('blog-empty')?.dataset.emptyText ??
+        'No articles match this filter.';
+      initBlogIndexFilters(msg);
+    };
+
+    bootBlogIndex();
+    document.addEventListener('astro:page-load', bootBlogIndex);
   </script>
 </BaseLayout>

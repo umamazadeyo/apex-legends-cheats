@@ -15,7 +15,10 @@ export function initBlogIndexFilters(emptyMessage: string) {
   (host as HTMLElement & { [BLOG_FILTERS_ABORT]?: AbortController })[BLOG_FILTERS_ABORT] = abort;
   const signal = abort.signal;
 
-  const filters = document.querySelectorAll<HTMLButtonElement>('[data-blog-filter]');
+  const toolbar = document.querySelector<HTMLElement>('[data-blog-filters]');
+  const filters = toolbar
+    ? toolbar.querySelectorAll<HTMLButtonElement>('[data-blog-filter]')
+    : document.querySelectorAll<HTMLButtonElement>('[data-blog-filter]');
 
   const cards = () => {
     const list: HTMLElement[] = [];
@@ -25,10 +28,14 @@ export function initBlogIndexFilters(emptyMessage: string) {
     return list;
   };
 
-  const activeTag = () =>
-    document.querySelector<HTMLButtonElement>('[data-blog-filter][aria-pressed="true"]')?.getAttribute(
-      'data-blog-filter',
-    ) ?? 'all';
+  const activeTag = () => {
+    const scope = toolbar ?? document;
+    return (
+      scope.querySelector<HTMLButtonElement>('[data-blog-filter][aria-pressed="true"]')?.getAttribute(
+        'data-blog-filter',
+      ) ?? 'all'
+    );
+  };
 
   const getSortSelectRoot = () => sortRoot?.querySelector<HTMLElement>('[data-sw-select]');
 
